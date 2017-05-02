@@ -1,0 +1,35 @@
+* Running
+
+Running the benchmarks requires Rust nightly. When using [[https://www.rustup.rs][rustup]]:
+
+#+BEGIN_SRC bash
+$ rustup install nightly
+$ rustup run nightly cargo bench
+
+#+END_SRC
+
+* Benchmarks
+
+** Intel Xeon CPU E5-2650 v3 2.3GHz
+
+| *Variant*             | *Time (ns)* | *Time compared to fastest* |
+|-----------------------+-------------+----------------------------|
+| SIMD unboxed shuffled |     2279968 |                       1.00 |
+| SIMD unboxed          |     2284494 |                       1.00 |
+| Unboxed shuffled      |     5364334 |                       2.35 |
+| Unboxed               |     5368465 |                       2.35 |
+| Boxed                 |     9559253 |                       4.19 |
+| Boxed shuffled        |    85343583 |                      37.43 |
+#+TBLFM: $3=$2/@2$2;%.2f
+
+** Intel Core i5-6360U 3.1GHz
+
+| *Variant*             | *Time (ns)* | *Time compared to fastest* |
+|-----------------------+-------------+----------------------------|
+| SIMD unboxed          |     2220756 |                       1.00 |
+| SIMD unboxed shuffled |     2235233 |                       1.01 |
+| Unboxed shuffled      |     6995278 |                       3.15 |
+| Unboxed               |     6995187 |                       3.15 |
+| Boxed                 |     8882155 |                       4.00 |
+| Boxed shuffled        |   414218023 |                     186.52 |
+#+TBLFM: $3=$2/@2$2;%.2f
